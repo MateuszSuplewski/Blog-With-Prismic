@@ -4,15 +4,18 @@ import App from './App'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 
+import { BrowserRouter as Router } from 'react-router-dom'
 import { PrismicProvider } from '@prismicio/react'
 import { client } from './prismic'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <PrismicProvider client={client}>
-      <App />
-    </PrismicProvider>
-  </React.StrictMode>,
+  <Router>
+    <React.StrictMode>
+      <PrismicProvider client={client}>
+        <App />
+      </PrismicProvider>
+    </React.StrictMode>
+  </Router>,
   document.getElementById('root')
 )
 
