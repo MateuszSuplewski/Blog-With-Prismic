@@ -3,7 +3,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ExamplePost from './posts/ExamplePost'
 import Home from './views/Home'
-import PostBrowser from './views/PostBrowser'
+import FilteredPosts from './views/FilteredPosts'
 
 export const App = () => {
   return (
@@ -15,15 +15,28 @@ export const App = () => {
         />
         <Route
           path={'/pages/:page'}
-          element={<PostBrowser/>}
-        />
+          element={<FilteredPosts/>}
+        >
+          <Route
+            path={'categories/:category'}
+            element={<FilteredPosts/>}
+          />
+          <Route
+            path={'published/:year/:month'}
+            element={<FilteredPosts/>}
+          />
+          <Route
+            path={'categories/:category/published/:year/:month'}
+            element={<FilteredPosts/>}
+          />
+        </Route>
         <Route
           path={'/articles/:article'}
           element={<ExamplePost/>}
         />
         <Route
           path={'*'}
-          element={<p>Error noobie</p>}
+          element={<p>Error --- no such page</p>}
         />
       </Routes>
     </div>

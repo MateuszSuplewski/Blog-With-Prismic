@@ -7,12 +7,15 @@ import { StyledPagination, PageNumberList, PageNumber } from './Pagination.style
 const Pagination = (props) => {
   const { children, limit = 1 } = props
   const length = children.length
-  const { page } = useParams()
-
+  const { page, category, year = '', month = '' } = useParams()
   const begin = limit * (page - 1)
   const end = page * limit
   const pages = Math.ceil(length / limit)
 
+  const defaultPath = '/pages'
+  let additionalPath = ''
+  if (category) additionalPath += `/categories/${category}`
+  if (year && month) additionalPath += `/published/${year}/${month}`
   const activeStyle = {
     fontWeight: 'bold',
     color: 'black',
@@ -33,7 +36,7 @@ const Pagination = (props) => {
           style={({ isActive }) =>
             isActive ? activeStyle : defaultStyle
        }
-          to={`/pages/${index + 1}`}
+          to={`${defaultPath}/${index + 1}${additionalPath}`}
         >
           {index + 1}
         </NavLink>
