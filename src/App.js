@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import ExamplePost from './posts/ExamplePost'
 import Home from './views/Home'
 import FilteredPosts from './views/FilteredPosts'
+import Page404 from './views/Page404'
 
 export const App = () => {
   return (
@@ -36,7 +37,7 @@ export const App = () => {
         />
         <Route
           path={'*'}
-          element={<p>Error --- no such page</p>}
+          element={<Page404/>}
         />
       </Routes>
     </div>

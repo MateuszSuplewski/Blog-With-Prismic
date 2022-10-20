@@ -10,7 +10,7 @@ const Pagination = (props) => {
   const { page, category, year = '', month = '' } = useParams()
   const begin = limit * (page - 1)
   const end = page * limit
-  const pages = Math.ceil(length / limit)
+  const pages = Math.ceil(length / limit) >= page ? Math.ceil(length / limit) : 0
 
   const defaultPath = '/pages'
   let additionalPath = ''

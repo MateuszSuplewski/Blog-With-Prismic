@@ -7,7 +7,7 @@ import * as prismicH from '@prismicio/helpers'
 import BrowseLinkWrapper from '../components/BrowseLinkWrapper'
 
 export const Home = () => {
-  const [documents, { state }] = useAllPrismicDocumentsByType('post', { fetchLinks: ['category.category_name'] })
+  const [posts, { state }] = useAllPrismicDocumentsByType('post', { fetchLinks: ['category.category_name'] })
   return (
     <div>
       <Header/>
@@ -28,12 +28,12 @@ export const Home = () => {
                  )
                :
                  (
-                   documents.slice(0, 2).map(document => (
+                   posts.slice(0, 2).map(({ uid, data }) => (
                      <PostPreview
-                       key={document.uid}
-                       slug={document.uid}
-                       title={prismicH.asText(document.data.title)}
-                       introduction={prismicH.asText(document.data.introduction)}
+                       key={uid}
+                       slug={uid}
+                       title={prismicH.asText(data.title)}
+                       introduction={prismicH.asText(data.introduction)}
                      />
                    ))
                  )
