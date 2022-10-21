@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const DefaultStyledPostPreview = styled.article`
+
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +21,8 @@ const StyledPostPreview = styled(DefaultStyledPostPreview)(
 )
 
 const Title = styled.h3`
-  color: #454545;
+  --primary-h: ${({ theme }) => theme.primaryHeadersColor};
+  color: var(--primary-h);
   font-size: 1.8rem;
   width: 100%;
   font-family: 'Lato', sans-serif;
@@ -34,8 +36,9 @@ const Title = styled.h3`
 `
 
 const Description = styled.p`
+    --primary-dec: ${({ theme }) => theme.primaryDecorativeColor};
   width: 100%;
-  color: #785964;
+  color: var(--primary-dec);
   font-family: 'PT Serif', serif;
   @media (max-width: 767px) {
       font-size: 1.2rem;

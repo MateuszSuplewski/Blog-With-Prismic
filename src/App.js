@@ -1,46 +1,50 @@
 import React from 'react'
 
+import { ThemeProvider } from 'styled-components'
+import themeSettings from './theme'
 import { Routes, Route } from 'react-router-dom'
-import ExamplePost from './posts/ExamplePost'
+import Article from './views/Article'
 import Home from './views/Home'
 import FilteredPosts from './views/FilteredPosts'
 import Page404 from './views/Page404'
 
 export const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route
-          path={'/'}
-          element={<Home/>}
-        />
-        <Route
-          path={'/pages/:page'}
-          element={<FilteredPosts/>}
-        >
+    <ThemeProvider theme={themeSettings}>
+      <div>
+        <Routes>
           <Route
-            path={'categories/:category'}
-            element={<FilteredPosts/>}
+            path={'/'}
+            element={<Home/>}
           />
           <Route
-            path={'published/:year/:month'}
+            path={'/pages/:page'}
             element={<FilteredPosts/>}
+          >
+            <Route
+              path={'categories/:category'}
+              element={<FilteredPosts/>}
+            />
+            <Route
+              path={'published/:year/:month'}
+              element={<FilteredPosts/>}
+            />
+            <Route
+              path={'categories/:category/published/:year/:month'}
+              element={<FilteredPosts/>}
+            />
+          </Route>
+          <Route
+            path={'/articles/:article'}
+            element={<Article/>}
           />
           <Route
-            path={'categories/:category/published/:year/:month'}
-            element={<FilteredPosts/>}
+            path={'*'}
+            element={<Page404/>}
           />
-        </Route>
-        <Route
-          path={'/articles/:article'}
-          element={<ExamplePost/>}
-        />
-        <Route
-          path={'*'}
-          element={<Page404/>}
-        />
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </ThemeProvider>
   )
 }
 

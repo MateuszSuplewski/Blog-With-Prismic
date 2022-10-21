@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 const DefaultStyledFooter = styled.footer`
+    --primary-bg: ${({ theme }) => theme.primaryBackgroundColor};
     box-sizing: border-box;
     width: 100%;
     padding: 20px 10vw;
-    background: #F1FFFA; // primary bg color
+    background: var(--primary-bg);
 `
 
 const StyledFooter = styled(DefaultStyledFooter)(

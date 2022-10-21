@@ -1,8 +1,14 @@
 import styled from 'styled-components'
 
 const DefaultStyledHeader = styled.header`
+
+    --primary-h: ${({ theme }) => theme.primaryHeadersColor};
+    --primary-dec: ${({ theme }) => theme.primaryDecorativeColor};
+    --secondary-dec: ${({ theme }) => theme.secondaryDecorativeColor};
+    --primary-bg: ${({ theme }) => theme.primaryBackgroundColor};
+
     display: grid;
-    background: #F1FFFA; // primary bg color
+    background: var(--primary-bg); // primary bg color: ;
     box-sizing: border-box;
     width: 100%;
     
@@ -52,7 +58,7 @@ const Avatar = styled.div`
 `
 
 const Title = styled.h1`
-  color: #454545; // primary title color for posts and so on
+  color: var(--primary-h);
   grid-area: title;  
   width: 100%;
   max-width: 500px;
@@ -74,15 +80,15 @@ const Description = styled.p`
   font-size: 1.2rem;
   line-height: 30px;
   max-width: 500px;
-  color: #93B7BE; // color for links and so on, something that u want to click!
+  color: var(--primary-dec);
 
 
   @media (max-width: 767px) {
-    border-bottom: 4px solid #785964; // decorative effects color not font color
+    border-bottom: 4px solid var(--secondary-dec); // decorative effects color not font color
     padding-bottom: 10px;
   }
   @media (min-width: 768px){
-    border-bottom: 2px solid #785964; // decorative effects color not font color
+    border-bottom: 2px solid var(--secondary-dec); // decorative effects color not font color
     justify-self: start;
   }
 `
