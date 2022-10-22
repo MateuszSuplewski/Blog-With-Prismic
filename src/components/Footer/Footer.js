@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyledFooter, Copyright } from './Footer.styled'
 
-const Footer = ({ style }) => {
+const Footer = ({ style, children, copyright }) => {
   return (
-    <StyledFooter
-      style={style}
-    >
-      <Copyright>Blog powered by: Prismic, made by Mateusz Suplewski</Copyright>
+    <StyledFooter style={style}>
+      {children}
+      <Copyright>{copyright}</Copyright>
     </StyledFooter>
   )
 }
-// Do image props passed by context!
 Footer.propTypes = {
-  style: PropTypes.object
+  style: PropTypes.object,
+  children: PropTypes.node,
+  copyright: PropTypes.string
 }
 
 export default Footer

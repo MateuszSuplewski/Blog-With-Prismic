@@ -15,32 +15,32 @@ export const App = () => {
         <Routes>
           <Route
             path={'/'}
-            element={<Home/>}
+            element={<Home />}
+          />
+          <Route
+            path={'/articles/:article'}
+            element={<Article />}
           />
           <Route
             path={'/pages/:page'}
-            element={<FilteredPosts/>}
+            element={<FilteredPosts />}
           >
             <Route
               path={'categories/:category'}
-              element={<FilteredPosts/>}
+              element={<FilteredPosts />}
             />
             <Route
               path={'published/:year/:month'}
-              element={<FilteredPosts/>}
+              element={<FilteredPosts />}
             />
             <Route
               path={'categories/:category/published/:year/:month'}
-              element={<FilteredPosts/>}
+              element={<FilteredPosts />}
             />
           </Route>
           <Route
-            path={'/articles/:article'}
-            element={<Article/>}
-          />
-          <Route
             path={'*'}
-            element={<Page404/>}
+            element={<Page404 />}
           />
         </Routes>
       </div>

@@ -5,44 +5,38 @@ import { NavLink, useParams } from 'react-router-dom'
 import { StyledPagination, PageNumberList, PageNumber } from './Pagination.styled'
 
 const Pagination = (props) => {
-  const { children, limit = 1 } = props
+  const { children, limit = 1, path } = props
+  const { page, category, year, month } = useParams()
   const length = children.length
-  const { page, category, year = '', month = '' } = useParams()
   const begin = limit * (page - 1)
   const end = page * limit
   const pages = Math.ceil(length / limit) >= page ? Math.ceil(length / limit) : 0
 
-  const defaultPath = '/pages'
   let additionalPath = ''
   if (category) additionalPath += `/categories/${category}`
   if (year && month) additionalPath += `/published/${year}/${month}`
-  const activeStyle = {
-    fontWeight: 'bold',
-    color: 'black',
-    textDecoration: 'none'
-  }
 
   const defaultStyle = {
     color: 'black',
     textDecoration: 'none'
   }
 
-  const links = (new Array(pages).fill(0)).map(
-    (item, index) => (
-      <PageNumber
-        key={index}
+  const activeStyle = {
+    fontWeight: 'bold',
+    color: 'black',
+    textDecoration: 'none'
+  }
+
+  const links = new Array(pages).fill(0).map((item, index) => (
+    <PageNumber key={index}>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : defaultStyle)}
+        to={`${path}/${index + 1}${additionalPath}`}
       >
-        <NavLink
-          style={({ isActive }) =>
-            isActive ? activeStyle : defaultStyle
-       }
-          to={`${defaultPath}/${index + 1}${additionalPath}`}
-        >
-          {index + 1}
-        </NavLink>
-      </PageNumber>
-    )
-  )
+        {index + 1}
+      </NavLink>
+    </PageNumber>
+  ))
 
   return (
     <>
@@ -56,7 +50,8 @@ const Pagination = (props) => {
 
 Pagination.propTypes = {
   children: PropTypes.node,
-  limit: PropTypes.number
+  limit: PropTypes.number,
+  path: PropTypes.string
 }
 
 export default Pagination

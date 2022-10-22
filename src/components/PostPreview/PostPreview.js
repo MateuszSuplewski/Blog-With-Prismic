@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyledPostPreview, Title, Description } from './PostPreview.styled'
-import MoreAboutLink from '../MoreAboutLink'
+import StyledLink from '../Link'
 
-const PostPreview = ({ style, title, introduction, slug }) => {
+const PostPreview = ({ style, title, introduction, url }) => {
   return (
-    <StyledPostPreview
-      style={style}
-    >
+    <StyledPostPreview style={style}>
       <Title>{title}</Title>
       <Description>{introduction}</Description>
-      <MoreAboutLink linkTo={`/articles/${slug}`}/>
+      <StyledLink linkTo={url}>Preview more</StyledLink>
     </StyledPostPreview>
   )
 }
@@ -19,7 +17,7 @@ PostPreview.propTypes = {
   style: PropTypes.object,
   title: PropTypes.string,
   introduction: PropTypes.string,
-  slug: PropTypes.string
+  url: PropTypes.string
 }
 
 export default PostPreview

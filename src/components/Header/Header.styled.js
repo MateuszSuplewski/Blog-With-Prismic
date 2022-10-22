@@ -1,65 +1,58 @@
 import styled from 'styled-components'
 
 const DefaultStyledHeader = styled.header`
+  --primary-h: ${({ theme }) => theme.primaryHeadersColor};
+  --primary-dec: ${({ theme }) => theme.primaryDecorativeColor};
+  --secondary-dec: ${({ theme }) => theme.secondaryDecorativeColor};
+  --primary-bg: ${({ theme }) => theme.primaryBackgroundColor};
 
-    --primary-h: ${({ theme }) => theme.primaryHeadersColor};
-    --primary-dec: ${({ theme }) => theme.primaryDecorativeColor};
-    --secondary-dec: ${({ theme }) => theme.secondaryDecorativeColor};
-    --primary-bg: ${({ theme }) => theme.primaryBackgroundColor};
+  display: grid;
+  background: var(--primary-bg); // primary bg color: ;
+  box-sizing: border-box;
+  width: 100%;
 
-    display: grid;
-    background: var(--primary-bg); // primary bg color: ;
-    box-sizing: border-box;
-    width: 100%;
-    
   @media (max-width: 767px) {
     grid-template-areas:
-    "avatar"
-    "title"
-    "description";
+      'avatar'
+      'title'
+      'description';
     padding: 1.2rem 1rem;
     justify-items: center;
     grid-template-columns: 1fr;
-    gap: 0 40px;
+    gap: 0 2.5rem;
   }
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-    "avatar title"
-    "avatar  description";
-    padding: 20px 10vw;
+      'avatar title'
+      'avatar  description';
+    padding: 1.25rem 10vw;
   }
-
 `
 
-const StyledHeader = styled(DefaultStyledHeader)(
-  ({ style }) => style
-)
+const StyledHeader = styled(DefaultStyledHeader)(({ style }) => style)
 
 const Avatar = styled.div`
-    grid-area: avatar;
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
-    background-position: center;
-    background-size: cover;
-    background-image: url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
-
+  grid-area: avatar;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background: ${props => `url(${props.url})`};
+  background-position: center;
+  background-size: cover;
   @media (max-width: 767px) {
-
   }
 
-  @media (min-width: 768px){
-    margin-right: 30px;
+  @media (min-width: 768px) {
+    margin-right: 2rem;
     justify-self: end;
   }
-
 `
 
 const Title = styled.h1`
   color: var(--primary-h);
-  grid-area: title;  
+  grid-area: title;
   width: 100%;
   max-width: 500px;
 
@@ -67,7 +60,7 @@ const Title = styled.h1`
     text-align: center;
   }
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     align-self: center;
   }
 `
@@ -78,17 +71,16 @@ const Description = styled.p`
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   font-size: 1.2rem;
-  line-height: 30px;
+  line-height: 2rem;
   max-width: 500px;
   color: var(--primary-dec);
 
-
   @media (max-width: 767px) {
-    border-bottom: 4px solid var(--secondary-dec); // decorative effects color not font color
+    border-bottom: 0.25rem solid var(--secondary-dec); // decorative effects color not font color
     padding-bottom: 10px;
   }
-  @media (min-width: 768px){
-    border-bottom: 2px solid var(--secondary-dec); // decorative effects color not font color
+  @media (min-width: 768px) {
+    border-bottom: 0.125rem solid var(--secondary-dec); // decorative effects color not font color
     justify-self: start;
   }
 `

@@ -3,46 +3,52 @@ import * as prismicH from '@prismicio/helpers'
 import { usePrismicDocumentByUID } from '@prismicio/react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Post from '../components/Post'
+import Informer from '../components/Informer'
+import Button from '../components/Button'
 
-const ExamplePost = (props) => {
+const Article = () => {
   const { article } = useParams()
-  const [postData, { state }] = usePrismicDocumentByUID('post', article, { fetchLinks: ['category.category_name'] })
+  const [postData, { state }] = usePrismicDocumentByUID('post', article, {
+    fetchLinks: ['category.category_name']
+  })
   const navigate = useNavigate()
   const src = postData && prismicH.asImageSrc(postData.data.image)
 
   const ChangeToPreviousPage = () => {
     navigate(-1)
   }
+
   return (
     <div>
-      {
-        state === 'idle'
-          ? (
+      {state === 'idle'
+        ? (
+          <Informer>
             <p>Server is preparing article for you</p>
-            )
-          :
-          state === 'loading'
-            ? (
+          </Informer>
+          )
+        : state === 'loading'
+          ? (
+            <Informer>
               <p>Loading article ...</p>
-              )
-            :
-            state === 'failed'
-              ? (
+            </Informer>
+            )
+          : state === 'failed'
+            ? (
+              <Informer>
                 <p>Error occurred!</p>
-                )
-              :
-                (
-                  <>
-                    <button onClick={ChangeToPreviousPage}>RETURN TO ARTICLES</button>
-                    <Post
-                      imgUrl={src}
-                      postData={postData}
-                    />
-                  </>
-                )
-      }
+              </Informer>
+              )
+            : (
+              <>
+                <Button onClick={ChangeToPreviousPage}>RETURN TO ARTICLES</Button>
+                <Post
+                  imgUrl={src}
+                  postData={postData}
+                />
+              </>
+              )}
     </div>
   )
 }
 
-export default ExamplePost
+export default Article

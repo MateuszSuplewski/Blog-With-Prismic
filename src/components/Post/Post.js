@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyledPost, CategoryList, Category } from './Post.styled'
+import { StyledPost } from './Post.styled'
 import { PrismicRichText } from '@prismicio/react'
+import CategoryList from '../CategoryList'
 
-const Post = ({ style, postData, imgUrl, onClick }) => {
+const Post = ({ style, postData, imgUrl }) => {
   return (
-    <StyledPost
-      style={style}
-    >
+    <StyledPost style={style}>
       <>
         <PrismicRichText field={postData.data.title} />
         <PrismicRichText field={postData.data.introduction} />
@@ -16,13 +15,7 @@ const Post = ({ style, postData, imgUrl, onClick }) => {
           src={imgUrl}
           alt={postData.data.image.alt}
         />
-        <CategoryList>
-          {postData.data.categories.map(category => (
-            <Category key={category.relatedcategory.id}>
-              {category.relatedcategory.data.category_name}
-            </Category>
-          ))}
-        </CategoryList>
+        <CategoryList categories={postData.data.categories} />
       </>
     </StyledPost>
   )
@@ -31,8 +24,7 @@ const Post = ({ style, postData, imgUrl, onClick }) => {
 Post.propTypes = {
   style: PropTypes.object,
   postData: PropTypes.object,
-  imgUrl: PropTypes.string,
-  onClick: PropTypes.func
+  imgUrl: PropTypes.string
 }
 
 export default Post
